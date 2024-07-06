@@ -2,6 +2,7 @@
 
 #include <X11/XF86keysym.h>
 
+
 /* appearance */
 static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -69,6 +70,7 @@ static const char *light_down[] = { "/usr/bin/light",   "-U", "5", NULL };
 static const char *volumeUp[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+5%", NULL };
 static const char *volumeDown[] = { "pactl", "set-sink-volume", "@DEFAULT_SINK@", "-5%", NULL };
 
+#include "shiftview.c"
 static const Key keys[] = {
 	/* modifier                     key        function        argument */
 
@@ -76,6 +78,8 @@ static const Key keys[] = {
         { 0,			   XF86XK_MonBrightnessDown, spawn, {.v = light_down} },
 	{ 0,                       XF86XK_AudioRaiseVolume, spawn, {.v = volumeUp   } },
 	{ 0,                       XF86XK_AudioLowerVolume, spawn, {.v = volumeDown } },
+	{ MODKEY,                       XK_Left,      shiftview,      {.i = -1} },
+	{ MODKEY,                       XK_Right,      shiftview,      {.i = +1} },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
